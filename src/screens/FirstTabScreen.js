@@ -1,4 +1,5 @@
 import React, {
+  Component,
   Text,
   View,
   ScrollView,
@@ -7,16 +8,7 @@ import React, {
   AlertIOS
 } from 'react-native';
 
-// important imports, the magic is here
-import { Navigation, Screen } from 'react-native-navigation';
-
-// need to import every screen we push
-import './PushedScreen';
-import './StyledScreen';
-import './ModalScreen';
-
-// instead of React.Component, we extend Screen (imported above)
-class FirstTabScreen extends Screen {
+export default class FirstTabScreen extends Component {
   static navigatorButtons = {
     leftButtons: [{
       icon: require('../../img/navicon_menu.png'),
@@ -35,10 +27,12 @@ class FirstTabScreen extends Screen {
   };
   constructor(props) {
     super(props);
+    // if you want to listen on navigator events, set this up
+    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
   }
   onNavigatorEvent(event) {
     if (event.id == 'menu') {
-      this.navigator.toggleDrawer({
+      this.props.navigator.toggleDrawer({
         side: 'left',
         animated: true
       });
@@ -70,19 +64,19 @@ class FirstTabScreen extends Screen {
     );
   }
   onPushPress() {
-    this.navigator.push({
+    this.props.navigator.push({
       title: "More",
       screen: "example.PushedScreen"
     });
   }
   onPushStyledPress() {
-    this.navigator.push({
+    this.props.navigator.push({
       title: "Styled",
       screen: "example.StyledScreen"
     });
   }
   onModalPress() {
-    this.navigator.showModal({
+    this.props.navigator.showModal({
       title: "Modal",
       screen: "example.ModalScreen"
     });
@@ -98,6 +92,3 @@ const styles = StyleSheet.create({
     color: 'blue'
   }
 });
-
-// every screen must be registered with a unique name
-Navigation.registerScreen('example.FirstTabScreen', () => FirstTabScreen);
