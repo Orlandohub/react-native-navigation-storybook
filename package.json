@@ -8,7 +8,8 @@
     "xcode": "open ios/example.xcodeproj",
     "android": "cd android && ./gradlew installDebug",
     "e2e": "detox test --configuration ios.sim.debug",
-    "e2e-release": "detox test --configuration ios.sim.release"
+    "e2e-release": "detox test --configuration ios.sim.release",
+    "storybook": "storybook start -p 7007"
   },
   "dependencies": {
     "react": "16.0.0",
@@ -18,7 +19,15 @@
   },
   "devDependencies": {
     "detox": "^5.0.0",
-    "mocha": "^3.4.2"
+    "mocha": "^3.4.2",
+    "@storybook/react-native": "^3.4.8",
+    "@storybook/addon-actions": "^3.4.8",
+    "@storybook/addon-links": "^3.4.8",
+    "@storybook/addons": "^3.4.8",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "react-dom": "16.0.0",
+    "prop-types": "^15.6.2"
   },
   "detox": {
     "specs": "test/e2e",
