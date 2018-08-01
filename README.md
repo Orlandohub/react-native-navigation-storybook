@@ -12,7 +12,7 @@ Original example from React Native Navigation with Storybook integration.
 **The challenge**:
 
 Once you decide to add Storybook to your react native app which uses react native navigation, the normal storybook setup process will not be enough.
-The reason for this is that react native navigation will take over screens rendering which means any new screen needs to be registered on react native navigation `Navigation.registerComponent`.
+The reason for this is that react native navigation will take over screens rendering which means any new screen needs to be registered on react native navigation with `Navigation.registerComponent`.
 
 **The solution**:
 
@@ -47,7 +47,9 @@ We need to make some slight changes on this file so we can successfully use Stor
 
     import { Navigation } from "react-native-navigation";
 
-After, we replace the `AppRegistry.registerComponent('%APP_NAME%', () => StorybookUIHMRRoot);` with `Navigation.registerComponent("storybook.UI", () => StorybookUI);`
+After, we replace -> `AppRegistry.registerComponent('%APP_NAME%', () => StorybookUIHMRRoot);`
+with -> `Navigation.registerComponent("storybook.UI", () => StorybookUI);`
+
 Finally we start a single screen app:
 
     Navigation.startSingleScreenApp({
@@ -84,4 +86,4 @@ The final result will look similar to this:
     AppRegistry.registerComponent('%APP_NAME%', () => StorybookUIHMRRoot);
     export default StorybookUIHMRRoot;
 
-That's it! Just run storybook and you are ready to rock :the_horns:
+That's it! Just run storybook and you are ready to rock 🤘🤘
