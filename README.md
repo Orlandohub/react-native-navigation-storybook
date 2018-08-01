@@ -47,7 +47,7 @@ We need to make some slight changes on this file so we can successfully use Stor
 
     import { Navigation } from "react-native-navigation";
 
-After, we replace -> `AppRegistry.registerComponent('%APP_NAME%', () => StorybookUIHMRRoot);`
+After, we replace -> `AppRegistry.registerComponent('%APP_NAME%', () => StorybookUIHMRRoot);` <br />
 with -> `Navigation.registerComponent("storybook.UI", () => StorybookUI);`
 
 Finally we start a single screen app:
