@@ -17,31 +17,35 @@ The reason for this is that react native navigation will take over screens rende
 The solution:
 
 After the initial storybook setup, you will have a new `storybook` folder. Inside that same folder the file `index.js` it's responsible for registering storybook screen, it's code should look like the following:
-  
-  import React, { Component } from 'react';
-  import { AppRegistry } from 'react-native';
-  import { getStorybookUI, configure } from '@storybook/react-native';
 
-  // import stories
-  configure(() => {
-    require('./stories');
-  }, module);
+<pre>
+  <code>
+    import React, { Component } from 'react';
+    import { AppRegistry } from 'react-native';
+    import { getStorybookUI, configure } from '@storybook/react-native';
 
-  // This assumes that storybook is running on the same host as your RN packager,
-  // to set manually use, e.g. host: 'localhost' option
-  const StorybookUIRoot = getStorybookUI({ port: 7007, onDeviceUI: true });
+    // import stories
+    configure(() => {
+      require('./stories');
+    }, module);
 
-  // react-native hot module loader must take in a Class - https://github.com/facebook/react-native/issues/10991
-  // https://github.com/storybooks/storybook/issues/2081
-  // eslint-disable-next-line react/prefer-stateless-function
-  class StorybookUIHMRRoot extends Component {
-    render() {
-      return <StorybookUIRoot />;
+    // This assumes that storybook is running on the same host as your RN packager,
+    // to set manually use, e.g. host: 'localhost' option
+    const StorybookUIRoot = getStorybookUI({ port: 7007, onDeviceUI: true });
+
+    // react-native hot module loader must take in a Class - https://github.com/facebook/react-native/issues/10991
+    // https://github.com/storybooks/storybook/issues/2081
+    // eslint-disable-next-line react/prefer-stateless-function
+    class StorybookUIHMRRoot extends Component {
+      render() {
+        return <StorybookUIRoot />;
+      }
     }
-  }
 
-  AppRegistry.registerComponent('%APP_NAME%', () => StorybookUIHMRRoot);
-  export default StorybookUIHMRRoot;
+    AppRegistry.registerComponent('%APP_NAME%', () => StorybookUIHMRRoot);
+    export default StorybookUIHMRRoot;
+  </code>
+</pre>
 
 We need to make some slight changes on this file so we can successfuly use Storybook. First let's start by importing react native navigation
 
