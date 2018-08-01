@@ -12,7 +12,7 @@ Original example from React Native Navigation with Storybook integration.
 **The challenge**:
 
 Once you decide to add Storybook to your react native app which uses react native navigation, the normal storybook setup process will not be enough.
-The reason for this is that react native navigation will take over screens rendering which means any new screen needs to be registred on react native navigation `Navigation.registerComponent`.
+The reason for this is that react native navigation will take over screens rendering which means any new screen needs to be registered on react native navigation `Navigation.registerComponent`.
 
 **The solution**:
 
@@ -43,7 +43,7 @@ After the initial storybook setup, you will have a new `storybook` folder. Insid
     AppRegistry.registerComponent('%APP_NAME%', () => StorybookUIHMRRoot);
     export default StorybookUIHMRRoot;
 
-We need to make some slight changes on this file so we can successfuly use Storybook. First let's start by importing react native navigation
+We need to make some slight changes on this file so we can successfully use Storybook. First let's start by importing react native navigation
 
     import { Navigation } from "react-native-navigation";
 
